@@ -24,5 +24,10 @@ namespace APP_Messenger
         {
             InitializeComponent();
         }
+
+        private void InitializeComponent()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
