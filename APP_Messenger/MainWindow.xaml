@@ -3,13 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:APP_Messenger"
+        xmlns:fa="\Assets\fontawesome-free-5.5.0-desktop\svgs\solid"
+        xmlns:appMessenger="clr-namespace:APP_Messenger"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid Name="MainGrid" Height="Auto">
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="72">
-                        Дарова, Аня :)
-        </TextBlock>
-        
+        Title="Messenger" MinHeight="600" MinWidth="400">
+    <Grid>
+        <ContentControl Name="_contentControl" IsEnabled="{Binding Path=IsEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <fa:Image Name="ImageAwesome"  Icon="redo.svg" Width="50" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center" Spin="True" Visibility="{Binding Path=LoaderVisibility, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 </Window>
