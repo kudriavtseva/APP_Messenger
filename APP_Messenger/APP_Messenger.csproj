@@ -54,11 +54,26 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Managers\Authentication\LoginManager.cs" />
+    <Compile Include="Managers\Authentication\NotifyPropertyChangedInvocatorAttribute.cs" />
+    <Compile Include="Managers\Authentication\SignUpManager.cs" />
     <Compile Include="Managers\NavigationManager.cs" />
+    <Compile Include="Managers\PhatiqueDialogManager.cs" />
     <Compile Include="Managers\StationManager.cs" />
+    <Compile Include="Tools\Controls\LabelAndPasswordControl.xaml.cs">
+      <DependentUpon>LabelAndPasswordControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\Controls\LabelAndTextControl.xaml.cs">
+      <DependentUpon>LabelAndTextControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\Controls\MessageControl.xaml.cs">
+      <DependentUpon>MessageControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Tools\IContentWindow.cs" />
     <Compile Include="Tools\NavigationModel.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Tools\PasswordBoxAssistant.cs" />
+    <Compile Include="Tools\RelayCommand.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\MessagingViewViewModel.cs" />
     <Compile Include="View\Authentication\LoginView.xaml.cs">
@@ -82,6 +97,18 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Tools\Controls\LabelAndPasswordControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tools\Controls\LabelAndTextControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tools\Controls\MessageControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Authentication\LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -123,7 +150,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\" />
-    <Folder Include="Tools\Controls\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

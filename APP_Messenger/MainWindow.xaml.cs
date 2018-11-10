@@ -14,10 +14,9 @@ namespace APP_Messenger
         public MainWindow()
         {
             InitializeComponent();
-            InitializeComponent();
             var navigationModel = new NavigationModel(this);
             NavigationManager.Instance.Initialize(navigationModel);
-            MainWindowViewModel mainWindowViewModel = new MainWindowViewModel();
+            var mainWindowViewModel = new MainWindowViewModel();
             DataContext = mainWindowViewModel;
             mainWindowViewModel.StartApplication();
         }

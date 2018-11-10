@@ -1,13 +1,14 @@
-﻿namespace APP_Messenger.View
+﻿using APP_Messenger.Managers.Authentication;
+
+namespace APP_Messenger.View
 {
-    /// <summary>
-    /// Interaction logic for View.xaml
-    /// </summary>
     internal partial class LoginView
     {
         internal LoginView()
         {
             InitializeComponent();
+            var loginManager = new LoginManager();
+            DataContext = loginManager;
         }
     }
 }
