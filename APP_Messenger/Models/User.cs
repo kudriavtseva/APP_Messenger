@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using APP_Messenger.Tools;
 
 namespace APP_Messenger.Models
 {
@@ -87,7 +84,7 @@ namespace APP_Messenger.Models
 
         private void SetPassword(string password)
         {
-            //_password = Encrypting.GetMd5HashForString(password);
+            _password = Encrypting.GetMd5HashForString(password);
         }
         public bool CheckPassword(string password)
         {

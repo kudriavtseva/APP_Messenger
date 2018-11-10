@@ -1,6 +1,5 @@
 ﻿using System;
 using APP_Messenger.View;
-using APP_Messenger.View.Authentication;
 using SignUpView =  APP_Messenger.View.Authentication.SignUpView;
 
 

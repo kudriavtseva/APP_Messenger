@@ -67,5 +67,115 @@ namespace APP_Messenger.Properties
                 resourceCulture = value;
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to get user.{0}Reason: {1}.
+        /// </summary>
+        internal static string LogIn_FailedToGetUser
+        {
+            get
+            {
+                return ResourceManager.GetString("LogIn_FailedToGetUser", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to validate password.{0}Reason: {1}.
+        /// </summary>
+        internal static string LogIn_FailedToValidatePassword
+        {
+            get
+            {
+                return ResourceManager.GetString("LogIn_FailedToValidatePassword", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to User with login {0} doesn&apos;t exist!.
+        /// </summary>
+        internal static string LogIn_UserDoesntExist
+        {
+            get
+            {
+                return ResourceManager.GetString("LogIn_UserDoesntExist", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Wrong password!.
+        /// </summary>
+        internal static string LogIn_WrongPassword
+        {
+            get
+            {
+                return ResourceManager.GetString("LogIn_WrongPassword", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Email address {0} is not valid!.
+        /// </summary>
+        internal static string SignUp_EmailIsNotValid
+        {
+            get
+            {
+                return ResourceManager.GetString("SignUp_EmailIsNotValid", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to create user.{0}Reason: {1}.
+        /// </summary>
+        internal static string SignUp_FailedToCreateUser
+        {
+            get
+            {
+                return ResourceManager.GetString("SignUp_FailedToCreateUser", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to validate data.{0}Reason: {1}.
+        /// </summary>
+        internal static string SignUp_FailedToValidateData
+        {
+            get
+            {
+                return ResourceManager.GetString("SignUp_FailedToValidateData", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to User with login {0} already exists!.
+        /// </summary>
+        internal static string SignUp_UserAlreadyExists
+        {
+            get
+            {
+                return ResourceManager.GetString("SignUp_UserAlreadyExists", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to User with login {0} doesn&apos;t exist!.
+        /// </summary>
+        internal static string SignUp_UserdoesntExist
+        {
+            get
+            {
+                return ResourceManager.GetString("SignUp_UserdoesntExist", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to User {0} successfully created!.
+        /// </summary>
+        internal static string SignUp_UserSuccessfulyCreated
+        {
+            get
+            {
+                return ResourceManager.GetString("SignUp_UserSuccessfulyCreated", resourceCulture);
+            }
+        }
     }
 }

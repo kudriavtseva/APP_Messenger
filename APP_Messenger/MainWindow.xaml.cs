@@ -1,8 +1,6 @@
 ﻿using System.Windows.Controls;
 using APP_Messenger.Managers;
 using APP_Messenger.Tools;
-using APP_Messenger.ViewModels;
-
 
 namespace APP_Messenger
 {
@@ -16,9 +14,7 @@ namespace APP_Messenger
             InitializeComponent();
             var navigationModel = new NavigationModel(this);
             NavigationManager.Instance.Initialize(navigationModel);
-            var mainWindowViewModel = new MainWindowViewModel();
-            DataContext = mainWindowViewModel;
-            mainWindowViewModel.StartApplication();
+            navigationModel.Navigate(ModelsEnum.LogIn);
         }
 
         public ContentControl ContentControl => _contentControl;

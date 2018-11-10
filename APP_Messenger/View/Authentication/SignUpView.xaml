@@ -11,21 +11,30 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
             <RowDefinition Height="70"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition MinHeight="20"  MaxHeight="30"/>
+            <RowDefinition Height="10"/>
             <RowDefinition MinHeight="20"  MaxHeight="30"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
-            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <controls:LabelAndTextControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Login, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                      Caption="Login" Margin="10" Grid.RowSpan="2"></controls:LabelAndTextControl>
-        <controls:LabelAndPasswordControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                          Caption="Password" Margin="10" Grid.RowSpan="2"></controls:LabelAndPasswordControl>
-
-        <Button Grid.Row="2" Grid.Column="0" Content="Log in" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Command="{Binding SignInCommand}"/>
-        <Button Grid.Row="2" Grid.Column="1" Content="Sign up" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Command="{Binding SignUpCommand}" />
-        <Button Grid.Row="2" Grid.Column="2" Content="Close" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Command="{Binding CloseCommand}"/>
+        <controls:LabelAndTextControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Login, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                              Caption="Login" Margin="10" Grid.RowSpan="2"></controls:LabelAndTextControl>
+        <controls:LabelAndPasswordControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                Caption="Password" Margin="10" Grid.RowSpan="2"></controls:LabelAndPasswordControl>
+        <controls:LabelAndTextControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                Caption="First Name" Margin="10" Grid.RowSpan="2"></controls:LabelAndTextControl>
+        <controls:LabelAndTextControl Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                Caption="Last Name" Margin="10" Grid.RowSpan="2"></controls:LabelAndTextControl>
+        <controls:LabelAndTextControl Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Email, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                Caption="Email" Margin="10" Grid.RowSpan="2"></controls:LabelAndTextControl>
+        <Button Grid.Row="5" Grid.Column="0" Content="Sign up" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Command="{Binding SignUpCommand}" />
+        <Button Grid.Row="5" Grid.Column="1" Content="Close" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Command="{Binding CloseCommand}"/>
+        <Button Grid.Row="7" Grid.Column="0" Content="Back to Sign In" HorizontalAlignment="Center" VerticalAlignment="Center" Width="225" Command="{Binding SignInCommand}" Grid.ColumnSpan="2"/>
     </Grid>
 </UserControl>

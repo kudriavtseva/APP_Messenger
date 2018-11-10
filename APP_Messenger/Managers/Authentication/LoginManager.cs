@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using APP_Messenger.Models;
 using  APP_Messenger.Properties;
 using APP_Messenger.Tools;
 
@@ -16,8 +16,8 @@ namespace APP_Messenger.Managers.Authentication
         private string _login;
 
         private ICommand _closeCommand;
-        private ICommand _loginCommand;
-        private ICommand _signupCommand;
+        private ICommand _logInCommand;
+        private ICommand _signUpCommand;
 
         public string Password
         {
@@ -39,21 +39,11 @@ namespace APP_Messenger.Managers.Authentication
             }
         }
 
-        public ICommand CloseCommand
-        {
-            get => _closeCommand ?? (_closeCommand = new RelayCommand<object>(CloseExecute));
-        }
+        public ICommand CloseCommand => _closeCommand ?? (_closeCommand = new RelayCommand<object>(CloseExecute));
 
-        public ICommand LoginCommand
-        {
-            get => _loginCommand ?? (_loginCommand = new RelayCommand<object>(LoginExecute, LoginCanExecute));
-        }
+        public ICommand LoginCommand => _logInCommand ?? (_logInCommand = new RelayCommand<object>(LoginExecute));
 
-        public ICommand SignUpCommand
-        {
-            get => _signupCommand ?? (_signupCommand = new RelayCommand<object>(SignUpExecute));
-        }
-
+        public ICommand SignUpCommand => _signUpCommand ?? (_signUpCommand = new RelayCommand<object>(SignUpExecute));
 
 
         internal LoginManager()
@@ -62,7 +52,38 @@ namespace APP_Messenger.Managers.Authentication
 
         private void LoginExecute(object obj)
         {
-            LoaderManager.Instance.S
+            User currentUser;
+            try
+            {
+                currentUser = DBManager.GetUserByLogin(_login);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(String.Format(Resources.LogIn_FailedToGetUser, Environment.NewLine,
+                    ex.Message));
+                return;
+            }
+            if (currentUser == null)
+            {
+                MessageBox.Show(String.Format(Resources.LogIn_UserDoesntExist, _login));
+                return;
+            }
+            try
+            {
+                if (!currentUser.CheckPassword(_password))
+                {
+                    MessageBox.Show(Resources.LogIn_WrongPassword);
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(String.Format(Resources.LogIn_FailedToValidatePassword, Environment.NewLine,
+                    ex.Message));
+                return;
+            }
+            StationManager.CurrentUser = currentUser;
+            NavigationManager.Instance.Navigate(ModelsEnum.Messaging);
         }
 
         private void SignUpExecute(object obj)

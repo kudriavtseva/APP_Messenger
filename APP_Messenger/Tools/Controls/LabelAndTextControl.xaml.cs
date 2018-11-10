@@ -22,8 +22,8 @@ namespace APP_Messenger.Tools.Controls
         );
         public string Text
         {
-            get { return (string)GetValue(TextProperty); }
-            set { SetValue(CaptionProperty, value); }
+            get => (string)GetValue(TextProperty);
+            set => SetValue(CaptionProperty, value);
         }
 
         public static readonly DependencyProperty CaptionProperty = DependencyProperty.Register
@@ -35,8 +35,8 @@ namespace APP_Messenger.Tools.Controls
         );
         public string Caption
         {
-            get { return (string)GetValue(CaptionProperty); }
-            set { SetValue(CaptionProperty, value); }
+            get => (string)GetValue(CaptionProperty);
+            set => SetValue(CaptionProperty, value);
         }
     
 }

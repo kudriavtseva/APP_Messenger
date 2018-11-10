@@ -35,6 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -57,6 +58,7 @@
     <Compile Include="Managers\Authentication\LoginManager.cs" />
     <Compile Include="Managers\Authentication\NotifyPropertyChangedInvocatorAttribute.cs" />
     <Compile Include="Managers\Authentication\SignUpManager.cs" />
+    <Compile Include="Managers\DBManager.cs" />
     <Compile Include="Managers\NavigationManager.cs" />
     <Compile Include="Managers\PhatiqueDialogManager.cs" />
     <Compile Include="Managers\StationManager.cs" />
@@ -69,6 +71,7 @@
     <Compile Include="Tools\Controls\MessageControl.xaml.cs">
       <DependentUpon>MessageControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Tools\Encryption.cs" />
     <Compile Include="Tools\IContentWindow.cs" />
     <Compile Include="Tools\NavigationModel.cs" />
     <Compile Include="Models\User.cs" />
