@@ -110,9 +110,9 @@ namespace APP_Messenger.Managers.Authentication
             }
             catch (Exception ex)
             {
-                MessageBox.Show(String.Format(Resources.SignUp_FailedToValidateData, Environment.NewLine,
-                    ex.Message));
-                return;
+                //MessageBox.Show(String.Format(Resources.SignUp_FailedToValidateData, Environment.NewLine,
+                   //ex.Message));
+                //return;
             }
             try
             {

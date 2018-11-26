@@ -59,9 +59,11 @@
     <Compile Include="Managers\Authentication\NotifyPropertyChangedInvocatorAttribute.cs" />
     <Compile Include="Managers\Authentication\SignUpManager.cs" />
     <Compile Include="Managers\DBManager.cs" />
+    <Compile Include="Managers\MessagingManager.cs" />
     <Compile Include="Managers\NavigationManager.cs" />
     <Compile Include="Managers\PhatiqueDialogManager.cs" />
     <Compile Include="Managers\StationManager.cs" />
+    <Compile Include="Models\Message.cs" />
     <Compile Include="Tools\Controls\LabelAndPasswordControl.xaml.cs">
       <DependentUpon>LabelAndPasswordControl.xaml</DependentUpon>
     </Compile>
@@ -142,6 +144,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
