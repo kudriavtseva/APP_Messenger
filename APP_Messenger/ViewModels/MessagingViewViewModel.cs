@@ -7,12 +7,15 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using APP_Messenger.Annotations;
+using APP_Messenger.Managers;
 using APP_Messenger.Models;
 
 namespace APP_Messenger.ViewModels
 {
     class MessagingViewViewModel: INotifyPropertyChanged
     {
+
+        private MessagingManager _messagingManager;
 
         private ObservableCollection<Message> _messages;
 
@@ -24,6 +27,16 @@ namespace APP_Messenger.ViewModels
                 _messages = value;
                 OnPropertyChanged("Messages");
             }
+        }
+
+        public MessagingViewViewModel()
+        {
+            _messagingManager.MessageSent1 += MessagingManagerOnMessageSent1;
+        }
+
+        private void MessagingManagerOnMessageSent1(Message obj)
+        {
+            Messages.Add(obj);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -64,6 +64,7 @@
     <Compile Include="Managers\PhatiqueDialogManager.cs" />
     <Compile Include="Managers\StationManager.cs" />
     <Compile Include="Models\Message.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Tools\Controls\LabelAndPasswordControl.xaml.cs">
       <DependentUpon>LabelAndPasswordControl.xaml</DependentUpon>
     </Compile>

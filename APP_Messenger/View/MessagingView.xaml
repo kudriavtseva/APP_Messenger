@@ -19,13 +19,13 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="5">
-                        <TextBlock FontSize="18" Text="{Binding Path=Title, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock FontSize="18" Text="{Binding Path=Text, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
 
         <TextBox  Width="3"  Grid.Row="1"></TextBox>
-        <Button Content="Add Wallet" Command="{Binding SendMessageCommand}" Grid.Row="2"/>
+        <Button Content="Send" Command="{Binding SendMessageCommand}" Grid.Row="2"/>
     </Grid>
 </UserControl>
