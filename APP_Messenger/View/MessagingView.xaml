@@ -4,7 +4,6 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
-
     <Grid Name="MainGrid" Height="Auto">
         <Grid.RowDefinitions>
             <RowDefinition Height="9*"/>
@@ -15,11 +14,6 @@
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <ListBox Grid.Row="0"  ItemsSource="{Binding Messages}" SelectedItem="{Binding SelectedMessage}" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="Auto" Margin="2" Grid.ColumnSpan="2">
-            <ListBox.ItemContainerStyle>
-                <Style TargetType="ListBoxItem">
-                    <Setter Property="IsEnabled" Value="False"/>
-                </Style>
-            </ListBox.ItemContainerStyle>
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="5">

@@ -34,7 +34,7 @@ namespace APP_Messenger.Models
         {
             _guid = Guid.NewGuid();
             _text = text;
-            _sender = sender;
+            _sender = user.ToString();
             user.Messages.Add(this);
         }
 
