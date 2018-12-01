@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using APP_Messenger.Tools;
 
 namespace APP_Messenger.Models
@@ -20,6 +21,8 @@ namespace APP_Messenger.Models
         private string _login;
         private string _password;
         private DateTime _lastLoginDate;
+        private List<Message> _messages;
+
         #endregion
 
         #region Properties
@@ -60,6 +63,18 @@ namespace APP_Messenger.Models
             set => _lastLoginDate = value;
         }
 
+        public List<Message> Messages
+        {
+            get
+            {
+                return _messages;
+            }
+            set
+            {
+                _messages = value;
+            }
+        }
+
         #endregion
 
         #region Constructor
@@ -78,6 +93,7 @@ namespace APP_Messenger.Models
 
         private User()
         {
+            _messages = new List<Message>();
         }
 
         #endregion
@@ -90,8 +106,9 @@ namespace APP_Messenger.Models
         {
             try
             {
+                string res = Encrypting.DecryptString(_password, PrivateKey);
                 string res2 = Encrypting.GetMd5HashForString(password);
-                return _password == res2;
+                return res == res2;
             }
             catch (Exception)
             {

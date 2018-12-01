@@ -1,6 +1,5 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
-using APP_Messenger.Managers;
+using APP_Messenger.ViewModels;
 
 namespace APP_Messenger.View
 {
@@ -13,14 +12,10 @@ namespace APP_Messenger.View
         {
             InitializeComponent();
             Visibility = Visibility.Visible;
-            var messagingManager = new MessagingManager();
-            messagingManager.MessageSent += OnMessageSent;
-            DataContext = messagingManager;
+            var messagingViewViewModel = new MessagingViewViewModel();
+            DataContext = messagingViewViewModel;
         }
 
-        private void OnMessageSent(Models.Message message)
-        {
-            //currentWalletConfigurationView.DataContext = new WalletConfigurationViewModel(message);
-        }
+
     }
 }
