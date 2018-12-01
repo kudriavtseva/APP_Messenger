@@ -23,7 +23,7 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <TextBox Grid.Row="1" Grid.Column="0"></TextBox>
+        <TextBox Grid.Row="1" Grid.Column="0" Text="{Binding MessageField, Mode=TwoWay}"></TextBox>
         <Button Content="Send" Command="{Binding SendMessageCommand}" Grid.Row="1" Grid.Column="1"/>
     </Grid>
 </UserControl>

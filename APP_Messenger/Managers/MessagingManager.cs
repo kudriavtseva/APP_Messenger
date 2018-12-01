@@ -26,7 +26,7 @@ namespace APP_Messenger.Managers
 
         private void SendMessageExecute(object obj)
         {
-            Message message = new Message(StationManager.CurrentUser, "Message...");
+            Message message = new Message(StationManager.CurrentUser, "Message...", "Senner");
             _messages.Add(message);
         }
 

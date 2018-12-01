@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 
 namespace APP_Messenger.Models
 {
@@ -9,6 +8,7 @@ namespace APP_Messenger.Models
         #region Fields
         private Guid _guid;
         private string _text;
+        private string _sender;
         #endregion
 
         #region Proprties
@@ -21,16 +21,20 @@ namespace APP_Messenger.Models
             get => _text;
             set => _text = value;
         }
+
+        public string Sender {
+            get => _sender;
+            set => _sender = value;
+        }
         #endregion
 
         #region Constructor
 
-
-        public Message(User user, string text) : this()
+        public Message(User user, string text, string sender) : this()
         {
-
             _guid = Guid.NewGuid();
             _text = text;
+            _sender = user.ToString();
             user.Messages.Add(this);
         }
 
@@ -41,7 +45,7 @@ namespace APP_Messenger.Models
 
         public override string ToString()
         {
-            return Text;
+            return Sender + " " + Text;
         }
     }
 }

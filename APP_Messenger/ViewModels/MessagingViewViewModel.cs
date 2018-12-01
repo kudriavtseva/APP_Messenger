@@ -12,8 +12,11 @@ namespace APP_Messenger.ViewModels
     {
         #region Fileds
         //private MessagingManager _messagingManager;
+        private PhatiqueDialogManager _bot = new PhatiqueDialogManager();
+        private string _messageField;
         private Message _selectedMessage;
         private ObservableCollection<Message> _messages;
+        
         #endregion
         private ICommand _SendMessageCommand;
 
@@ -25,6 +28,17 @@ namespace APP_Messenger.ViewModels
             set => _messagingManager = value;
         }
         */
+
+        public string MessageField
+        {
+            get => _messageField;
+            set
+            {
+                _messageField = value;
+                OnPropertyChanged();
+            }
+        }
+
         public Message SelectedMessage {
             get => _selectedMessage;
             set
@@ -48,7 +62,7 @@ namespace APP_Messenger.ViewModels
 
         private void OnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
         {
-            if (propertyChangedEventArgs.PropertyName == "SelectedMessage")
+            if (propertyChangedEventArgs.PropertyName == "MessageField")
                 OnMessageSent(_selectedMessage);
         }
         private void StartMessaging()
@@ -62,13 +76,21 @@ namespace APP_Messenger.ViewModels
             {
                 _selectedMessage = Messages[0];
             }
+            Message greet = new Message(StationManager.CurrentUser, "Hello. How are you?", StationManager.CurrentUser.Login);
+            _selectedMessage = greet;
+            _messages.Add(greet);
         }
 
         private void SendMessage(object o)
         {
-            Message message = new Message(StationManager.CurrentUser, "Message Text");
+            Message message = new Message(StationManager.CurrentUser, MessageField, StationManager.CurrentUser.Login);
             _messages.Add(message);
             _selectedMessage = message;
+            MessageField = "";
+            Message responce = _bot.Respond(message, StationManager.CurrentUser);
+            _messages.Add(responce);
+            _selectedMessage = responce;
+            
         }
 
         #region EventsAndHandlers
