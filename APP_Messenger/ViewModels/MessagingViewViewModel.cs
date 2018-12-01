@@ -11,7 +11,6 @@ namespace APP_Messenger.ViewModels
     class MessagingViewViewModel: INotifyPropertyChanged
     {
         #region Fileds
-        //private MessagingManager _messagingManager;
         private PhatiqueDialogManager _bot = new PhatiqueDialogManager();
         private string _messageField;
         private Message _selectedMessage;
@@ -21,13 +20,6 @@ namespace APP_Messenger.ViewModels
         private ICommand _SendMessageCommand;
 
         public ICommand SendMessageCommand => _SendMessageCommand ?? (_SendMessageCommand = new RelayCommand<object>(SendMessage));
-
-        /*
-        public MessagingManager MessagingManager {
-            get => _messagingManager;
-            set => _messagingManager = value;
-        }
-        */
 
         public string MessageField
         {
