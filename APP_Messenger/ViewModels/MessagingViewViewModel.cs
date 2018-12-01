@@ -76,7 +76,7 @@ namespace APP_Messenger.ViewModels
             {
                 _selectedMessage = Messages[0];
             }
-            Message greet = new Message(StationManager.CurrentUser, "Hello. How are you?", StationManager.CurrentUser.Login);
+            Message greet = new Message(StationManager.CurrentUser, "bot: " + "Hello. How are you?", StationManager.CurrentUser.Login);
             _selectedMessage = greet;
             _messages.Add(greet);
         }
@@ -85,10 +85,12 @@ namespace APP_Messenger.ViewModels
         {
             Message message = new Message(StationManager.CurrentUser, MessageField, StationManager.CurrentUser.Login);
             _messages.Add(message);
+            message.Text = message.Sender + ": " + message.Text;
             _selectedMessage = message;
             MessageField = "";
             Message responce = _bot.Respond(message, StationManager.CurrentUser);
             _messages.Add(responce);
+            responce.Text = responce.Sender + ": " + responce.Text;
             _selectedMessage = responce;
             
         }
