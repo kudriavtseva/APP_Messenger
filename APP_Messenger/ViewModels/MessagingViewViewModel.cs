@@ -4,18 +4,20 @@ using APP_Messenger.Models;
 using APP_Messenger.Tools;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace APP_Messenger.ViewModels
 {
-    class MessagingViewViewModel: INotifyPropertyChanged
+    class MessagingViewViewModel : INotifyPropertyChanged
     {
         #region Fileds
         private PhatiqueDialogManager _bot = new PhatiqueDialogManager();
         private string _messageField;
         private Message _selectedMessage;
         private ObservableCollection<Message> _messages;
-        
+
         #endregion
         private ICommand _SendMessageCommand;
 
@@ -31,7 +33,8 @@ namespace APP_Messenger.ViewModels
             }
         }
 
-        public Message SelectedMessage {
+        public Message SelectedMessage
+        {
             get => _selectedMessage;
             set
             {
@@ -81,11 +84,16 @@ namespace APP_Messenger.ViewModels
             message.Text = message.Sender + ": " + message.Text;
             _selectedMessage = message;
             MessageField = "";
+            GetAnswer(message);
+        }
+
+        private async void GetAnswer(Message message)
+        {
+            await Task.Delay(750);
             Message responce = _bot.Respond(message, StationManager.CurrentUser);
             _messages.Add(responce);
             responce.Text = responce.Sender + ": " + responce.Text;
             _selectedMessage = responce;
-            
         }
 
         #region EventsAndHandlers

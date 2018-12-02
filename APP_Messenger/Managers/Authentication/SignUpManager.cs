@@ -4,6 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
+using System.Threading;
+using System.Threading.Tasks;
 using APP_Messenger.Models;
 using APP_Messenger.Properties;
 using APP_Messenger.Tools;
@@ -93,40 +95,48 @@ namespace APP_Messenger.Managers.Authentication
         }
         #endregion
 
-        private void SignUpExecute(object obj)
+        private async void SignUpExecute(object obj)
         {
-            try
+            LoaderManager.Instance.ShowLoader();
+            var result = await Task.Run(() =>
             {
-                if (!new EmailAddressAttribute().IsValid(_email))
+                try
                 {
-                    MessageBox.Show(String.Format(Resources.SignUp_EmailIsNotValid, _email));
-                    return;
+                    if (!new EmailAddressAttribute().IsValid(_email))
+                    {
+                        MessageBox.Show(String.Format(Resources.SignUp_EmailIsNotValid, _email));
+                        return false;
+                    }
+                    if (DBManager.UserExists(_login))
+                    {
+                        MessageBox.Show(String.Format(Resources.SignUp_UserAlreadyExists, _login));
+                        return false;
+                    }
                 }
-                if (DBManager.UserExists(_login))
+                catch (Exception ex)
                 {
-                    MessageBox.Show(String.Format(Resources.SignUp_UserAlreadyExists, _login));
-                    return;
+                    MessageBox.Show(String.Format(Resources.SignUp_FailedToValidateData, Environment.NewLine,
+                       ex.Message));
+                    return false;
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(String.Format(Resources.SignUp_FailedToValidateData, Environment.NewLine,
-                   ex.Message));
-                return;
-            }
-            try
-            {
-                var user = new User(_firstName, _lastName, _email, _login, _password);
-                DBManager.AddUser(user);
-                StationManager.CurrentUser = user;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(String.Format(Resources.SignUp_FailedToCreateUser, Environment.NewLine,
-                    ex.Message));
-                return;
-            }
-            MessageBox.Show(String.Format(Resources.SignUp_UserSuccessfulyCreated, _login));
+                try
+                {
+                    var user = new User(_firstName, _lastName, _email, _login, _password);
+                    DBManager.AddUser(user);
+                    StationManager.CurrentUser = user;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(String.Format(Resources.SignUp_FailedToCreateUser, Environment.NewLine,
+                        ex.Message));
+                    return false;
+                }
+                MessageBox.Show(String.Format(Resources.SignUp_UserSuccessfulyCreated, _login));
+                return true;
+            });
+            LoaderManager.Instance.HideLoader();
+            if (result)
+                NavigationManager.Instance.Navigate(ModelsEnum.Messaging);
             NavigationManager.Instance.Navigate(ModelsEnum.Messaging);
         }
         private bool SignUpCanExecute(object obj)
