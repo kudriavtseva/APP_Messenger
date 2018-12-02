@@ -1,9 +1,9 @@
-﻿using System;
+﻿using APP_Messenger.Tools;
+using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using APP_Messenger.Tools;
 
-namespace APP_Messenger.Managers
+namespace KMA.C2018.Managers
 {
     class SerializationManager
     {

@@ -4,6 +4,7 @@ using System.Windows;
 using APP_Messenger.Managers;
 using APP_Messenger.Tools;
 using APP_Messenger.Annotations;
+using KMA.C2018.Managers;
 
 namespace APP_Messenger.ViewModels
 {

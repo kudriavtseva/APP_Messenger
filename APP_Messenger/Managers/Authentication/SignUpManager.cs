@@ -4,11 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
-using System.Threading;
 using System.Threading.Tasks;
-using APP_Messenger.Models;
 using APP_Messenger.Properties;
 using APP_Messenger.Tools;
+using KMA.C2018.Managers;
+using KMA.APP_Messenger.DBModels;
 
 namespace APP_Messenger.Managers.Authentication
 {

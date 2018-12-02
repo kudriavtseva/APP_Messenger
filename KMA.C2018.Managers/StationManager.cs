@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
-using APP_Messenger.Models;
 using APP_Messenger.Tools;
+using KMA.APP_Messenger.DBModels;
 
-namespace APP_Messenger.Managers
+namespace KMA.C2018.Managers
 {
     public static class StationManager
     {
@@ -39,7 +39,7 @@ namespace APP_Messenger.Managers
         }
 
 
-        internal static void CloseApp()
+        public static void CloseApp()
         {
             Environment.Exit(1);
         }

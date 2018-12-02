@@ -33,6 +33,16 @@ namespace APP_Messenger.Models
             }
         }
 
+        public string Sender
+        {
+            get { return _message.Sender; }
+            set
+            {
+                _message.Sender = value;
+                OnPropertyChanged();
+            }
+        }
+
         public Guid Guid
         {
             get { return _message.Guid; }

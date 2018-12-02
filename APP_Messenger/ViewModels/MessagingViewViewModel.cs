@@ -2,11 +2,12 @@
 using APP_Messenger.Managers.Authentication;
 using APP_Messenger.Models;
 using APP_Messenger.Tools;
+using KMA.APP_Messenger.DBModels;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using KMA.C2018.Managers;
 
 namespace APP_Messenger.ViewModels
 {
@@ -15,8 +16,8 @@ namespace APP_Messenger.ViewModels
         #region Fileds
         private PhatiqueDialogManager _bot = new PhatiqueDialogManager();
         private string _messageField;
-        private Message _selectedMessage;
-        private ObservableCollection<Message> _messages;
+        private MessageUIModel _selectedMessage;
+        private ObservableCollection<MessageUIModel> _messages;
 
         #endregion
         private ICommand _SendMessageCommand;
@@ -33,7 +34,7 @@ namespace APP_Messenger.ViewModels
             }
         }
 
-        public Message SelectedMessage
+        public MessageUIModel SelectedMessage
         {
             get => _selectedMessage;
             set
@@ -44,7 +45,7 @@ namespace APP_Messenger.ViewModels
             }
         }
 
-        public ObservableCollection<Message> Messages
+        public ObservableCollection<MessageUIModel> Messages
         {
             get => _messages;
         }
@@ -61,18 +62,19 @@ namespace APP_Messenger.ViewModels
             if (propertyChangedEventArgs.PropertyName == "MessageField")
                 OnMessageSent(_selectedMessage);
         }
+
         private void StartMessaging()
         {
-            _messages = new ObservableCollection<Message>();
+            _messages = new ObservableCollection<MessageUIModel>();
             foreach (var message in StationManager.CurrentUser.Messages)
             {
-                _messages.Add(message);
+                _messages.Add(new MessageUIModel(message));
             }
             if (_messages.Count > 0)
             {
                 _selectedMessage = Messages[0];
             }
-            Message greet = _bot.StartConversation(StationManager.CurrentUser);
+            MessageUIModel greet = _bot.StartConversation(StationManager.CurrentUser);
             _selectedMessage = greet;
             _messages.Add(greet);
         }
@@ -80,17 +82,19 @@ namespace APP_Messenger.ViewModels
         private void SendMessage(object o)
         {
             Message message = new Message(StationManager.CurrentUser, MessageField, StationManager.CurrentUser.Login);
-            _messages.Add(message);
+            DBManager.AddMessage(message);
+            var messageUIModel = new MessageUIModel(message);
+            _messages.Add(messageUIModel);
             message.Text = message.Sender + ": " + message.Text;
-            _selectedMessage = message;
+            _selectedMessage = messageUIModel;
             MessageField = "";
-            GetAnswer(message);
+            GetAnswer(messageUIModel);
         }
 
-        private async void GetAnswer(Message message)
+        private async void GetAnswer(MessageUIModel message)
         {
             await Task.Delay(750);
-            Message responce = _bot.Respond(message, StationManager.CurrentUser);
+            MessageUIModel responce = _bot.Respond(message, StationManager.CurrentUser);
             _messages.Add(responce);
             responce.Text = responce.Sender + ": " + responce.Text;
             _selectedMessage = responce;
@@ -99,9 +103,9 @@ namespace APP_Messenger.ViewModels
         #region EventsAndHandlers
         #region Loader
         internal event MessageSentHandler MessageSent;
-        internal delegate void MessageSentHandler(Message message);
+        internal delegate void MessageSentHandler(MessageUIModel message);
 
-        internal virtual void OnMessageSent(Message message)
+        internal virtual void OnMessageSent(MessageUIModel message)
         {
             MessageSent?.Invoke(message);
         }

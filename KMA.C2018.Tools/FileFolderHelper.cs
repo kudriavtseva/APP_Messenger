@@ -3,7 +3,7 @@ using System.IO;
 
 namespace APP_Messenger.Tools
 {
-    class FileFolderHelper
+    public class FileFolderHelper
     {
         private static readonly string AppDataPath =
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
@@ -20,10 +20,10 @@ namespace APP_Messenger.Tools
         internal static readonly string StorageFilePath =
             Path.Combine(ClientFolderPath, "Storage.mes");
 
-        internal static readonly string LastUserFilePath =
+        public static readonly string LastUserFilePath =
             Path.Combine(ClientFolderPath, "LastUser.mes");
 
-        internal static void CheckAndCreateFile(string filePath)
+        public static void CheckAndCreateFile(string filePath)
         {
             try
             {
