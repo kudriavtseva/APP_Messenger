@@ -1,12 +1,20 @@
 ﻿using APP_Messenger.Models;
+using APP_Messenger.Tools;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace APP_Messenger.Managers
 {
-    public class DBManager
+    internal class DBManager
     {
-        private static readonly List<User> Users = new List<User>();
+        private static readonly List<User> Users;
+
+        #region Constructor
+        static DBManager()
+        {
+            Users = SerializationManager.Deserialize<List<User>>(FileFolderHelper.StorageFilePath) ?? new List<User>();
+        }
+        #endregion
 
         public static bool UserExists(string login)
         {
@@ -21,8 +29,25 @@ namespace APP_Messenger.Managers
         public static void AddUser(User user)
         {
             Users.Add(user);
+            SaveChanges();
         }
 
+        private static void SaveChanges()
+        {
+            SerializationManager.Serialize(Users, FileFolderHelper.StorageFilePath);
+        }
 
+        internal static User CheckCachedUser(User userCandidate)
+        {
+            var userInStorage = Users.FirstOrDefault(u => u.Guid == userCandidate.Guid);
+            if (userInStorage != null && userInStorage.CheckPassword(userCandidate))
+                return userInStorage;
+            return null;
+        }
+
+        public static void UpdateUser(User currentUser)
+        {
+            SaveChanges();
+        }
     }
 }

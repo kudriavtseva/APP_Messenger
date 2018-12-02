@@ -21,7 +21,7 @@ namespace APP_Messenger.Managers.Authentication
         #region Commands
         private ICommand _closeCommand;
         private ICommand _signUpCommand;
-        private ICommand _signInCommand;
+        private ICommand _logInCommand;
         #endregion
         #endregion
 
@@ -32,7 +32,7 @@ namespace APP_Messenger.Managers.Authentication
 
         public ICommand SignUpCommand => _signUpCommand ?? (_signUpCommand = new RelayCommand<object>(SignUpExecute, SignUpCanExecute));
 
-        public ICommand SignInCommand => _signInCommand ?? (_signInCommand = new RelayCommand<object>(SignInExecute));
+        public ICommand LogInCommand => _logInCommand ?? (_logInCommand = new RelayCommand<object>(LogInExecute));
 
         #endregion
 
@@ -137,7 +137,7 @@ namespace APP_Messenger.Managers.Authentication
                    !String.IsNullOrEmpty(_lastName) &&
                    !String.IsNullOrEmpty(_email);
         }
-        private void SignInExecute(object obj)
+        private void LogInExecute(object obj)
         {
             NavigationManager.Instance.Navigate(ModelsEnum.LogIn);
         }

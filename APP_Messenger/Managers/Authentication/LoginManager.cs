@@ -1,16 +1,17 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using APP_Messenger.Models;
-using  APP_Messenger.Properties;
+using APP_Messenger.Properties;
 using APP_Messenger.Tools;
 
 
 namespace APP_Messenger.Managers.Authentication
 {
-    sealed class LoginManager : INotifyPropertyChanged
+    sealed class LogInManager : INotifyPropertyChanged
     {
         private string _password;
         private string _login;
@@ -41,49 +42,61 @@ namespace APP_Messenger.Managers.Authentication
 
         public ICommand CloseCommand => _closeCommand ?? (_closeCommand = new RelayCommand<object>(CloseExecute));
 
-        public ICommand LoginCommand => _logInCommand ?? (_logInCommand = new RelayCommand<object>(LoginExecute));
+        public ICommand LogInCommand => _logInCommand ?? (_logInCommand = new RelayCommand<object>(LogInExecute, LogInCanExecute));
 
         public ICommand SignUpCommand => _signUpCommand ?? (_signUpCommand = new RelayCommand<object>(SignUpExecute));
 
 
-        internal LoginManager()
+        internal LogInManager()
         {
         }
 
-        private void LoginExecute(object obj)
+        private async void LogInExecute(object obj)
         {
-            User currentUser;
-            try
+            LoaderManager.Instance.ShowLoader();
+            var result = await Task.Run(() =>
             {
-                currentUser = DBManager.GetUserByLogin(_login);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(String.Format(Resources.LogIn_FailedToGetUser, Environment.NewLine,
-                    ex.Message));
-                return;
-            }
-            if (currentUser == null)
-            {
-                MessageBox.Show(String.Format(Resources.LogIn_UserDoesntExist, _login));
-                return;
-            }
-            try
-            {
-                if (!currentUser.CheckPassword(_password))
+                User currentUser;
+                try
                 {
-                    MessageBox.Show(Resources.LogIn_WrongPassword);
-                    return;
+                    currentUser = DBManager.GetUserByLogin(_login);
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(String.Format(Resources.LogIn_FailedToValidatePassword, Environment.NewLine,
-                    ex.Message));
-                return;
-            }
-            StationManager.CurrentUser = currentUser;
-            NavigationManager.Instance.Navigate(ModelsEnum.Messaging);
+                catch (Exception ex)
+                {
+                    MessageBox.Show(String.Format(Resources.LogIn_FailedToGetUser, Environment.NewLine,
+                        ex.Message));
+                    return false;
+                }
+                if (currentUser == null)
+                {
+                    MessageBox.Show(String.Format(Resources.LogIn_UserDoesntExist, _login));
+                    return false;
+                }
+                try
+                {
+                    if (!currentUser.CheckPassword(_password))
+                    {
+                        MessageBox.Show(Resources.LogIn_WrongPassword);
+                        return false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(String.Format(Resources.LogIn_FailedToValidatePassword, Environment.NewLine,
+                        ex.Message));
+                    return false;
+                }
+                StationManager.CurrentUser = currentUser;
+                return true;
+            });
+            LoaderManager.Instance.HideLoader();
+            if (result)
+                NavigationManager.Instance.Navigate(ModelsEnum.Messaging);
+        }
+
+        private bool LogInCanExecute(object obj)
+        {
+            return !String.IsNullOrWhiteSpace(_login) || !String.IsNullOrWhiteSpace(_password);
         }
 
         private void SignUpExecute(object obj)

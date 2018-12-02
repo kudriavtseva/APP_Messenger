@@ -1,14 +1,13 @@
 ﻿using APP_Messenger.Managers.Authentication;
-
-namespace APP_Messenger.View
+namespace APP_Messenger.View.Authentication
 {
-    internal partial class LoginView
+    internal partial class LogInView
     {
-        internal LoginView()
+        public LogInView()
         {
             InitializeComponent();
-            var loginManager = new LoginManager();
-            DataContext = loginManager;
+            var logInManager = new LogInManager();
+            DataContext = logInManager;
         }
     }
 }

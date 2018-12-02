@@ -40,6 +40,10 @@ namespace APP_Messenger.Managers
             "You should write something"
         };
 
+        public Message StartConversation(User user) {
+            return new Message(user, BotName+": Hello. How are you?", BotName);
+        }
+
         public Message Respond(Message ms, User user) {
             if (ms.Text == null) {
                 return new Message(user, silence[r.Next(silence.Length)], BotName);

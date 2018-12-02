@@ -106,11 +106,10 @@ namespace APP_Messenger.Models
         {
             try
             {
-                string res = Encrypting.DecryptString(_password, PrivateKey);
                 string res2 = Encrypting.GetMd5HashForString(password);
-                return res == res2;
+                return _password == res2;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }

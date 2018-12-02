@@ -1,5 +1,7 @@
 ﻿using System;
+using System.IO;
 using APP_Messenger.Models;
+using APP_Messenger.Tools;
 
 namespace APP_Messenger.Managers
 {
@@ -7,8 +9,33 @@ namespace APP_Messenger.Managers
     {
         public static User CurrentUser { get; set; }
 
-        public static void Initialize()
+        static StationManager()
         {
+            DeserializeLastUser();
+        }
+
+        private static void DeserializeLastUser()
+        {
+            User userCandidate;
+            try
+            {
+                userCandidate = SerializationManager.Deserialize<User>(Path.Combine(FileFolderHelper.LastUserFilePath));
+            }
+            catch (Exception ex)
+            {
+                userCandidate = null;
+                Logger.Log("Failed to Deserialize last user", ex);
+            }
+            if (userCandidate == null)
+            {
+                Logger.Log("User was not deserialized");
+                return;
+            }
+            userCandidate = DBManager.CheckCachedUser(userCandidate);
+            if (userCandidate == null)
+                Logger.Log("Failed to relogin last user");
+            else
+                CurrentUser = userCandidate;
         }
 
 

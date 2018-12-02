@@ -35,6 +35,6 @@
                                 Caption="Email" Margin="10" Grid.RowSpan="2"></controls:LabelAndTextControl>
         <Button Grid.Row="5" Grid.Column="0" Content="Sign up" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Command="{Binding SignUpCommand}" />
         <Button Grid.Row="5" Grid.Column="1" Content="Close" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Command="{Binding CloseCommand}"/>
-        <Button Grid.Row="7" Grid.Column="0" Content="Back to Sign In" HorizontalAlignment="Center" VerticalAlignment="Center" Width="225" Command="{Binding SignInCommand}" Grid.ColumnSpan="2"/>
+        <Button Grid.Row="7" Grid.Column="0" Content="Back to Sign In" HorizontalAlignment="Center" VerticalAlignment="Center" Width="225" Command="{Binding LogInCommand}" Grid.ColumnSpan="2"/>
     </Grid>
 </UserControl>

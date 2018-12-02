@@ -36,6 +36,7 @@ namespace APP_Messenger.ViewModels
             set
             {
                 _selectedMessage = value;
+                _selectedMessage.Text = value.Sender + " :" + value.Text;
                 OnPropertyChanged();
             }
         }
@@ -68,7 +69,7 @@ namespace APP_Messenger.ViewModels
             {
                 _selectedMessage = Messages[0];
             }
-            Message greet = new Message(StationManager.CurrentUser, "bot: " + "Hello. How are you?", StationManager.CurrentUser.Login);
+            Message greet = _bot.StartConversation(StationManager.CurrentUser);
             _selectedMessage = greet;
             _messages.Add(greet);
         }

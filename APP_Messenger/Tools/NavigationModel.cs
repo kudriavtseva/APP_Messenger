@@ -1,7 +1,7 @@
 ﻿using System;
 using APP_Messenger.View;
 using SignUpView =  APP_Messenger.View.Authentication.SignUpView;
-
+using LogInView = APP_Messenger.View.Authentication.LogInView;
 
 namespace APP_Messenger.Tools
 {
@@ -16,7 +16,7 @@ namespace APP_Messenger.Tools
     {
         private readonly IContentWindow _contentWindow;
 
-        private LoginView _loginView;
+        private LogInView _loginView;
 
         private SignUpView _signUpView;
 
@@ -32,7 +32,7 @@ namespace APP_Messenger.Tools
             switch (model)
             {
                 case ModelsEnum.LogIn:
-                    _contentWindow.ContentControl.Content = _loginView ?? (_loginView = new LoginView());
+                    _contentWindow.ContentControl.Content = _loginView ?? (_loginView = new LogInView());
                     break;
                 case ModelsEnum.SignUp:
                     _contentWindow.ContentControl.Content = _signUpView ?? (_signUpView = new SignUpView());
