@@ -3,7 +3,7 @@ using System.Collections;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace APP_Messenger.Tools
+namespace KMA.C2018.Tools
 {
     public static class Encrypting
     {

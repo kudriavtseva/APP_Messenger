@@ -1,9 +1,8 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
-using  APP_Messenger.Managers;
+using APP_Messenger.Managers;
 using APP_Messenger.Tools;
-using APP_Messenger.Properties;
 using APP_Messenger.Annotations;
 
 namespace APP_Messenger.ViewModels
