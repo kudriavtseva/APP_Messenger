@@ -9,6 +9,7 @@ using APP_Messenger.Properties;
 using APP_Messenger.Tools;
 using KMA.C2018.Managers;
 using KMA.APP_Messenger.DBModels;
+using KMA.C2018.APP_Messenger.Properties;
 
 namespace APP_Messenger.Managers.Authentication
 {
