@@ -53,8 +53,26 @@ namespace KMA.C2018.DBAdapter
         {
             using (var context = new MessageDBContext())
             {
-                message.DeleteDatabaseValues();
                 context.Messages.Add(message);
+            }
+        }
+
+        public static void SaveMessage(Message message)
+        {
+            using (var context = new MessageDBContext())
+            {
+                context.Entry(message).State = EntityState.Modified;
+                context.SaveChanges();
+            }
+        }
+
+        public static void DeleteMessage(Message message)
+        {
+            using (var context = new MessageDBContext())
+            {
+                message.DeleteDatabaseValues();
+                context.Messages.Attach(message);
+                context.Messages.Remove(message);
                 context.SaveChanges();
             }
         }

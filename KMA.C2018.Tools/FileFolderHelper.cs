@@ -1,23 +1,23 @@
 ﻿using System;
 using System.IO;
 
-namespace APP_Messenger.Tools
+namespace KMA.C2018.Tools
 {
     public class FileFolderHelper
     {
         private static readonly string AppDataPath =
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 
-        internal static readonly string ClientFolderPath =
+        public static readonly string ClientFolderPath =
             Path.Combine(AppDataPath, "Messenger");
 
-        internal static readonly string LogFolderPath =
+        public static readonly string LogFolderPath =
             Path.Combine(ClientFolderPath, "Log");
 
-        internal static readonly string LogFilepath = Path.Combine(LogFolderPath,
+        public static readonly string LogFilepath = Path.Combine(LogFolderPath,
             "App_" + DateTime.Now.ToString("YYYY_MM_DD") + ".txt");
 
-        internal static readonly string StorageFilePath =
+        public static readonly string StorageFilePath =
             Path.Combine(ClientFolderPath, "Storage.mes");
 
         public static readonly string LastUserFilePath =

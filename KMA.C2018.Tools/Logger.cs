@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text;
 
-namespace APP_Messenger.Tools
+namespace KMA.C2018.Tools
 {
     public static class Logger
     {

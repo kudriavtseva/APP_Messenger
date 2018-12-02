@@ -11,10 +11,10 @@ namespace KMA.APP_Messenger.DBModels
     {
         #region Fields
         private Guid _guid;
+        private string _login;
         private string _firstName;
         private string _lastName;
         private string _email;
-        private string _login;
         private string _password;
         private DateTime _lastLoginDate;
         private List<Message> _messages;
@@ -77,26 +77,26 @@ namespace KMA.APP_Messenger.DBModels
 
         public User(string firstName, string lastName, string email, string login, string password) : this()
         {
-            _guid = Guid.NewGuid();
-            _firstName = firstName;
-            _lastName = lastName;
-            _email = email;
-            _login = login;
-            _lastLoginDate = DateTime.Now;
+            Guid = Guid.NewGuid();
+            FirstName= firstName;
+            LastName = lastName;
+            Email = email;
+            Login = login;
+            LastLoginDate = DateTime.Now;
 
             SetPassword(password);
         }
 
         private User()
         {
-            _messages = new List<Message>();
+            Messages = new List<Message>();
         }
 
         #endregion
 
         private void SetPassword(string password)
         {
-            _password = Encrypting.GetMd5HashForString(password);
+            Password = Encrypting.GetMd5HashForString(password);
         }
         public bool CheckPassword(string password)
         {

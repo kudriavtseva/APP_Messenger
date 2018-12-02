@@ -15,7 +15,5 @@ namespace APP_Messenger.View
             var messagingViewViewModel = new MessagingViewViewModel();
             DataContext = messagingViewViewModel;
         }
-
-
     }
 }

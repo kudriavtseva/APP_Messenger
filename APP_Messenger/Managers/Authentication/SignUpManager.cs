@@ -131,13 +131,11 @@ namespace APP_Messenger.Managers.Authentication
                         ex.Message));
                     return false;
                 }
-                MessageBox.Show(String.Format(Resources.SignUp_UserSuccessfulyCreated, _login));
                 return true;
             });
             LoaderManager.Instance.HideLoader();
             if (result)
                 NavigationManager.Instance.Navigate(ModelsEnum.Messaging);
-            NavigationManager.Instance.Navigate(ModelsEnum.Messaging);
         }
         private bool SignUpCanExecute(object obj)
         {

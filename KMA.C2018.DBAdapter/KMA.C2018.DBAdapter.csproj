@@ -50,6 +50,11 @@
   <ItemGroup>
     <Compile Include="EntityWrapper.cs" />
     <Compile Include="MessageDBContext.cs" />
+    <Compile Include="Migrations\201812022146063_InnitialMigration.cs" />
+    <Compile Include="Migrations\201812022146063_InnitialMigration.Designer.cs">
+      <DependentUpon>201812022146063_InnitialMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\InitialMigration.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -63,6 +68,10 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201812022146063_InnitialMigration.resx">
+      <DependentUpon>201812022146063_InnitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

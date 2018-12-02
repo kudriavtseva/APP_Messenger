@@ -6,7 +6,7 @@ namespace KMA.C2018.Managers
 {
     public class DBManager
     {
-        private static readonly List<User> Users;
+        //private static readonly List<User> Users;
 
 
         public static bool UserExists(string login)
