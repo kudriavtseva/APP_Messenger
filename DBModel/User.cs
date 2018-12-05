@@ -1,22 +1,31 @@
-﻿using KMA.C2018.Tools;
-using System;
+﻿using System;
+using KMA.C2018.Tools;
 using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
+using System.Runtime.Serialization;
 
 namespace KMA.APP_Messenger.DBModels
 {
     [Serializable]
-
+    [DataContract(IsReference = true)]
     public class User
     {
         #region Fields
+        [DataMember]
         private Guid _guid;
+        [DataMember]
         private string _login;
+        [DataMember]
         private string _firstName;
+        [DataMember]
         private string _lastName;
+        [DataMember]
         private string _email;
+        [DataMember]
         private string _password;
+        [DataMember]
         private DateTime _lastLoginDate;
+        [DataMember]
         private List<Message> _messages;
 
         #endregion

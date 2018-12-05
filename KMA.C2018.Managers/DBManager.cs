@@ -1,6 +1,5 @@
 ﻿using KMA.APP_Messenger.DBModels;
-using KMA.C2018.DBAdapter;
-using System.Collections.Generic;
+using KMA.C2018.MessengerServiceInterface;
 
 namespace KMA.C2018.Managers
 {
@@ -8,32 +7,31 @@ namespace KMA.C2018.Managers
     {
         //private static readonly List<User> Users;
 
-
         public static bool UserExists(string login)
         {
-            return EntityWrapper.UserExists(login);
+            return MessengerServiceWrapper.UserExists(login);
         }
 
         public static User GetUserByLogin(string login)
         {
-            return EntityWrapper.GetUserByLogin(login);
+            return MessengerServiceWrapper.GetUserByLogin(login);
         }
 
         public static void AddUser(User user)
         {
-            EntityWrapper.AddUser(user);
+            MessengerServiceWrapper.AddUser(user);
         }
 
         internal static User CheckCachedUser(User userCandidate)
         {
-            var userInStorage = EntityWrapper.GetUserByGuid(userCandidate.Guid);
+            var userInStorage = MessengerServiceWrapper.GetUserByGuid(userCandidate.Guid);
             if (userInStorage != null && userInStorage.CheckPassword(userCandidate))
                 return userInStorage;
             return null;
         }
 
         public static void AddMessage(Message message) {
-            EntityWrapper.AddMessage(message);
+            MessengerServiceWrapper.AddMessage(message);
         }
     }
 }

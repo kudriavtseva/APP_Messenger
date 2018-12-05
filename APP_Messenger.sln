@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMA.C2018.Managers", "KMA.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMA.C2018.DBAdapter", "KMA.C2018.DBAdapter\KMA.C2018.DBAdapter.csproj", "{175DC39B-805E-49BE-A3B3-CB90FE2E04CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMA.C2018.MessengerService", "KMA.C2018.MessengerService\KMA.C2018.MessengerService.csproj", "{3F5B5CD8-C496-4536-8724-E4B4C94861D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessengerServiceInterface", "MessengerServiceInterface\MessengerServiceInterface.csproj", "{4BF785DB-0606-4986-AD65-18F5DE49C7B7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{175DC39B-805E-49BE-A3B3-CB90FE2E04CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{175DC39B-805E-49BE-A3B3-CB90FE2E04CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{175DC39B-805E-49BE-A3B3-CB90FE2E04CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F5B5CD8-C496-4536-8724-E4B4C94861D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F5B5CD8-C496-4536-8724-E4B4C94861D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F5B5CD8-C496-4536-8724-E4B4C94861D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F5B5CD8-C496-4536-8724-E4B4C94861D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BF785DB-0606-4986-AD65-18F5DE49C7B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BF785DB-0606-4986-AD65-18F5DE49C7B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BF785DB-0606-4986-AD65-18F5DE49C7B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BF785DB-0606-4986-AD65-18F5DE49C7B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

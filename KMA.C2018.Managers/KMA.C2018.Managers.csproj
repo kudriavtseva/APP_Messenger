@@ -59,6 +59,10 @@
       <Project>{C27BAD34-9A12-453B-842A-45DA441AC058}</Project>
       <Name>KMA.C2018.Tools</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MessengerServiceInterface\MessengerServiceInterface.csproj">
+      <Project>{4BF785DB-0606-4986-AD65-18F5DE49C7B7}</Project>
+      <Name>MessengerServiceInterface</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

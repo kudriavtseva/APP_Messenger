@@ -4,7 +4,6 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using APP_Messenger.Properties;
 using APP_Messenger.Tools;
 using KMA.APP_Messenger.DBModels;
 using KMA.C2018.APP_Messenger.Properties;
