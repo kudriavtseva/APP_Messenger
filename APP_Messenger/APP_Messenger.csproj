@@ -88,7 +88,7 @@
     <Compile Include="Tools\PasswordBoxAssistant.cs" />
     <Compile Include="Tools\RelayCommand.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
-    <Compile Include="ViewModels\MessagingViewViewModel.cs" />
+    <Compile Include="ViewModels\MessagingViewModel.cs" />
     <Compile Include="View\Authentication\LogInView.xaml.cs">
       <DependentUpon>LogInView.xaml</DependentUpon>
     </Compile>
