@@ -1,23 +1,16 @@
 ﻿using System;
 using System.Data.Entity.ModelConfiguration;
-using System.Runtime.Serialization;
 
 namespace KMA.APP_Messenger.DBModels
 {
     [Serializable]
-    [DataContract(IsReference = true)]
     public class Message
     {
         #region Fields
-        [DataMember]
         private Guid _guid;
-        [DataMember]
         private string _text;
-        [DataMember]
         private string _sender;
-        [DataMember]
         private Guid _userGuid;
-        [DataMember]
         private User _user;
         #endregion
 

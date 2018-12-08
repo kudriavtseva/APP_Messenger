@@ -46,7 +46,6 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -161,9 +160,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -177,14 +174,6 @@
     <ProjectReference Include="..\KMA.C2018.Managers\KMA.C2018.Managers.csproj">
       <Project>{e23ccbc9-8e20-42e1-9df9-6dbe99bbf20b}</Project>
       <Name>KMA.C2018.Managers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\KMA.C2018.MessengerService\KMA.C2018.MessengerService.csproj">
-      <Project>{3f5b5cd8-c496-4536-8724-e4b4c94861d0}</Project>
-      <Name>KMA.C2018.MessengerService</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MessengerServiceInterface\MessengerServiceInterface.csproj">
-      <Project>{4bf785db-0606-4986-ad65-18f5de49c7b7}</Project>
-      <Name>MessengerServiceInterface</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
