@@ -12,8 +12,8 @@ namespace APP_Messenger.View
         {
             InitializeComponent();
             Visibility = Visibility.Visible;
-            var messagingViewModel = new MessagingViewModel();
-            DataContext = messagingViewModel;
+            var messagingViewViewModel = new MessagingViewViewModel();
+            DataContext = messagingViewViewModel;
         }
     }
 }

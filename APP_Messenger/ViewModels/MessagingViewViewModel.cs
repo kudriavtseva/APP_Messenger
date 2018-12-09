@@ -11,7 +11,7 @@ using KMA.C2018.Managers;
 
 namespace APP_Messenger.ViewModels
 {
-    class MessagingViewModel : INotifyPropertyChanged
+    class MessagingViewViewModel : INotifyPropertyChanged
     {
         #region Fileds
         private PhatiqueDialogManager _bot = new PhatiqueDialogManager();
@@ -51,7 +51,7 @@ namespace APP_Messenger.ViewModels
         }
 
 
-        public MessagingViewModel()
+        public MessagingViewViewModel()
         {
             StartMessaging();
             PropertyChanged += OnPropertyChanged;
