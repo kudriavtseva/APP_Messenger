@@ -3,11 +3,15 @@ using APP_Messenger.Managers.Authentication;
 using APP_Messenger.Models;
 using APP_Messenger.Tools;
 using KMA.APP_Messenger.DBModels;
+using KMA.C2018.APP_Messenger.Properties;
+using KMA.C2018.Managers;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
-using KMA.C2018.Managers;
+using Exception = System.Exception;
 
 namespace APP_Messenger.ViewModels
 {
@@ -16,10 +20,9 @@ namespace APP_Messenger.ViewModels
         #region Fileds
         private PhatiqueDialogManager _bot = new PhatiqueDialogManager();
         private string _messageField;
-        private MessageUIModel _selectedMessage;
         private ObservableCollection<MessageUIModel> _messages;
-
         #endregion
+
         private ICommand _SendMessageCommand;
 
         public ICommand SendMessageCommand => _SendMessageCommand ?? (_SendMessageCommand = new RelayCommand<object>(SendMessage));
@@ -34,25 +37,20 @@ namespace APP_Messenger.ViewModels
             }
         }
 
-        public MessageUIModel SelectedMessage
-        {
-            get => _selectedMessage;
-            set
-            {
-                _selectedMessage = value;
-                _selectedMessage.Text = value.Sender + " :" + value.Text;
-                OnPropertyChanged();
-            }
-        }
-
         public ObservableCollection<MessageUIModel> Messages
         {
             get => _messages;
+            set
+            {
+                _messages = value;
+                OnPropertyChanged();
+            }
         }
 
 
         public MessagingViewModel()
         {
+
             StartMessaging();
             PropertyChanged += OnPropertyChanged;
         }
@@ -60,54 +58,72 @@ namespace APP_Messenger.ViewModels
         private void OnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
         {
             if (propertyChangedEventArgs.PropertyName == "MessageField")
-                OnMessageSent(_selectedMessage);
+                OnMessageSent(_messages);
         }
 
         private void StartMessaging()
         {
             _messages = new ObservableCollection<MessageUIModel>();
-            foreach (var message in StationManager.CurrentUser.Messages)
+            try
             {
-                _messages.Add(new MessageUIModel(message));
+                foreach (var message in DBManager.GetAllMessages(StationManager.CurrentUser))
+                {
+                    _messages.Add(new MessageUIModel(message));
+                }
             }
-            if (_messages.Count > 0)
+            catch (Exception)
             {
-                _selectedMessage = Messages[0];
             }
+
             MessageUIModel greet = _bot.StartConversation(StationManager.CurrentUser);
-            _selectedMessage = greet;
             _messages.Add(greet);
         }
 
         private void SendMessage(object o)
         {
-            Message message = new Message(StationManager.CurrentUser, MessageField, StationManager.CurrentUser.Login);
+            Message message = new Message(StationManager.CurrentUser, MessageField,
+                StationManager.CurrentUser.Login);
             DBManager.AddMessage(message);
+
             var messageUIModel = new MessageUIModel(message);
-            _messages.Add(messageUIModel);
+            try
+            {
+                _messages.Add(messageUIModel);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(String.Format(Resources.Messaging_FailedToSend, Environment.NewLine,
+                    MessageField));
+            }
             message.Text = message.Sender + ": " + message.Text;
-            _selectedMessage = messageUIModel;
             MessageField = "";
-            GetAnswer(messageUIModel);
+            Task.Delay(750).Wait();
+            GetAnswer(messageUIModel, StationManager.CurrentUser);
+
         }
 
-        private async void GetAnswer(MessageUIModel message)
+        private void GetAnswer(MessageUIModel messageUIModel, User user)
         {
-            await Task.Delay(750);
-            MessageUIModel responce = _bot.Respond(message, StationManager.CurrentUser);
-            _messages.Add(responce);
-            responce.Text = responce.Sender + ": " + responce.Text;
-            _selectedMessage = responce;
+            try
+            {
+                MessageUIModel responce = _bot.Respond(messageUIModel, user);
+                Messages.Add(responce);
+                responce.Text = responce.Sender + ": " + responce.Text;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(String.Format(Resources.Messaging_FailedToSend, Environment.NewLine));
+            }
         }
 
         #region EventsAndHandlers
         #region Loader
         internal event MessageSentHandler MessageSent;
-        internal delegate void MessageSentHandler(MessageUIModel message);
+        internal delegate void MessageSentHandler(ObservableCollection<MessageUIModel> messages);
 
-        internal virtual void OnMessageSent(MessageUIModel message)
+        internal virtual void OnMessageSent(ObservableCollection<MessageUIModel> messages)
         {
-            MessageSent?.Invoke(message);
+            MessageSent?.Invoke(messages);
         }
         #endregion
         #region PropertyChanged

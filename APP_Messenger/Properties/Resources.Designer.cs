@@ -97,6 +97,24 @@ namespace KMA.C2018.APP_Messenger.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Message {0} can&apos;t be sent! Try again later..
+        /// </summary>
+        internal static string Messaging_FailedToSend {
+            get {
+                return ResourceManager.GetString("Messaging_FailedToSend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The bot failed to compose an answer! We&apos;re sorry..
+        /// </summary>
+        internal static string Responce_FailedToCompose {
+            get {
+                return ResourceManager.GetString("Responce_FailedToCompose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email address {0} is not valid!.
         /// </summary>
         internal static string SignUp_EmailIsNotValid {

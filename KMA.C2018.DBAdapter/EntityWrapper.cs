@@ -1,6 +1,7 @@
 ﻿using KMA.APP_Messenger.DBModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
 
@@ -66,15 +67,11 @@ namespace KMA.C2018.DBAdapter
             }
         }
 
-        public static void DeleteMessage(Message message)
+        public static ObservableCollection<Message> GetAllMessages(User user)
         {
-            using (var context = new MessageDBContext())
-            {
-                message.DeleteDatabaseValues();
-                context.Messages.Attach(message);
-                context.Messages.Remove(message);
-                context.SaveChanges();
-            }
+
+            return new ObservableCollection<Message>(user.Messages);
+
         }
 
     }

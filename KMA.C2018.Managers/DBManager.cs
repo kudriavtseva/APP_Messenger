@@ -1,6 +1,6 @@
 ﻿using KMA.APP_Messenger.DBModels;
 using KMA.C2018.DBAdapter;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace KMA.C2018.Managers
 {
@@ -34,6 +34,11 @@ namespace KMA.C2018.Managers
 
         public static void AddMessage(Message message) {
             EntityWrapper.AddMessage(message);
+        }
+
+        public static ObservableCollection<Message> GetAllMessages(User user)
+        {
+            return EntityWrapper.GetAllMessages(user);
         }
     }
 }

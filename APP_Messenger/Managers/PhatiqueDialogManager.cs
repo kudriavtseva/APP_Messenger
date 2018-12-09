@@ -1,7 +1,9 @@
-﻿using System;
-using APP_Messenger.Models;
+﻿using APP_Messenger.Models;
 using KMA.APP_Messenger.DBModels;
+using KMA.C2018.APP_Messenger.Properties;
 using KMA.C2018.Managers;
+using System;
+using System.Windows;
 
 namespace APP_Messenger.Managers
 {
@@ -42,23 +44,43 @@ namespace APP_Messenger.Managers
             "You should write something"
         };
 
-        public MessageUIModel StartConversation(User user) {
-            return new MessageUIModel(new Message(user, BotName+": Hello. How are you?", BotName));
+        public MessageUIModel StartConversation(User user)
+        {
+            return new MessageUIModel(new Message(user, BotName + ": Hello. How are you?", BotName));
         }
 
-        public MessageUIModel Respond(MessageUIModel ms, User user) {
-            if (ms.Text == null) {
-                var responce = new Message(user, silence[r.Next(silence.Length)], BotName);
-                DBManager.AddMessage(responce);
-                var responceUI = new MessageUIModel(responce);
-                return responceUI;
+        public MessageUIModel Respond(MessageUIModel ms, User user)
+        {
+            if (ms.Text == user.Login + ": ")
+            {
+                try
+                {
+                    var responce = new Message(user, silence[r.Next(silence.Length)], BotName);
+                    DBManager.AddMessage(responce);
+                    var responceUI = new MessageUIModel(responce);
+                    return responceUI;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(String.Format(Resources.Messaging_FailedToSend, Environment.NewLine));
+                    return null;
+                }
             }
-            else {
-                string[] next = ms.Text.Contains("?") ? answers : questions;
-                var responce = new Message(user, next[r.Next(next.Length)], BotName);
-                DBManager.AddMessage(responce);
-                var responceUI = new MessageUIModel(responce);
-                return responceUI;
+            else
+            {
+                try
+                {
+                    string[] next = ms.Text.Contains("?") ? answers : questions;
+                    var responce = new Message(user, next[r.Next(next.Length)], BotName);
+                    DBManager.AddMessage(responce);
+                    var responceUI = new MessageUIModel(responce);
+                    return responceUI;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(String.Format(Resources.Messaging_FailedToSend, Environment.NewLine));
+                    return null;
+                }
             }
         }
     }

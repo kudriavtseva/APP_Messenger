@@ -53,6 +53,7 @@
     value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
+
     mimetype: application/x-microsoft.net.object.bytearray.base64
     value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
@@ -145,5 +146,11 @@
   </data>
   <data name="LogIn_WrongPassword" xml:space="preserve">
     <value>Wrong password!</value>
+  </data>
+  <data name="Messaging_FailedToSend" xml:space="preserve">
+    <value>Message {0} can't be sent! Try again later.</value>
+  </data>
+  <data name="Responce_FailedToCompose" xml:space="preserve">
+    <value>The bot failed to compose an answer! We're sorry.</value>
   </data>
 </root>
